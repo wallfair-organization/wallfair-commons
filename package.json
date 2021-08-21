@@ -1,0 +1,16 @@
+{
+  "name": "@wallfair.io/wallfair-commons",
+  "version": "1.0.2",
+  "description": "Wallfair commons package to be used for Wallfair microservice structure",
+  "main": "index.js",
+  "scripts": {
+    "publish": "npm publish --access=public"
+  },
+  "keywords": [
+    "wallfair",
+    "javascript",
+    "nodejs"
+  ],
+  "author": "Guilherme Mussi <mussi@wallfair.io>",
+  "license": "AGPL-3.0-or-later"
+}
