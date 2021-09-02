@@ -74,28 +74,25 @@ const eventSchema = new mongoose.Schema({
         required: true,
         max: 255,
     },
-    tags: [
-        {
-            name: String
-        }
-    ],
-    date: {
-        type: Date,
-        required: true,
-        default: Date.now,
-    },
+    tags: [{
+        name: String
+    }],
     type: {
         type: String,
         required: true,
-        enum: ['streamed', 'non-streamed', 'game']
+        enum: ['streamed', 'non-streamed']
     },
     category: {
         type: String,
         required: true,
-        enum: ['streamed-esports', 'streamed-shooter', 'streamed-mmorpg', 'streamed-other', 'sports', 'politics', 'crypto', 'celebrities', 'other']
     },
     metadata: {
         type: Metadata
+    },
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now,
     },
     betTemplate: this.BetTemplate,
     bets: [{
