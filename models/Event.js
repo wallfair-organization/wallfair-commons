@@ -59,6 +59,11 @@ const eventSchema = new mongoose.Schema({
         required: true,
         max: 255,
     },
+    slug: {
+        type: String,
+        required: true,
+        max: 255,
+    },
     streamUrl: {
         type: String,
         required: true,

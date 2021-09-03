@@ -11,6 +11,11 @@ const betSchema = new mongoose.Schema({
         required: true,
         max: 255,
     },
+    slug: {
+        type: String,
+        required: true,
+        max: 255,
+    },
     description: {
         type: String,
         required: false,
