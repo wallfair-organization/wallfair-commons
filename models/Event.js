@@ -1,10 +1,5 @@
 const mongoose = require("mongoose");
 
-const Outcome = new mongoose.Schema({
-    index: Number,
-    name: String,
-});
-
 const Metadata = new mongoose.Schema({
     'twitch_id': String, 
     'twitch_login': String, 
@@ -27,30 +22,6 @@ const Metadata = new mongoose.Schema({
         // "pending" when sub is requested, 
         // "true" when sub is confirmed
     }
-});
-
-exports.BetTemplate = new mongoose.Schema({
-    betDuration: {
-        type: Number,
-    },
-    creator: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    },
-    marketQuestion: {
-        type: String,
-        max: 255,
-    },
-    description: {
-        type: String,
-        max: 1200,
-    },
-    hot: {
-        type: Boolean,
-    },
-    outcomes: [{
-        type: Outcome
-    }],
 });
 
 const eventSchema = new mongoose.Schema({
