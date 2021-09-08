@@ -50,16 +50,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  openBets: {
-    type: [Object],
-    required: true,
-    default: [],
-  },
-  closedBets: {
-    type: [Object],
-    required: true,
-    default: [],
-  },
   confirmed: {
     type: Boolean,
     required: true,
