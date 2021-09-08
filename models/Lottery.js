@@ -23,6 +23,16 @@ const lotterySchema = new mongoose.Schema({
         required: true,
         default: Date.now,
     },
+    closed: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
+    closedAt: {
+        type: String,
+        required: false,
+        default: Date.now,     
+    }
 });
 
 module.exports = mongoose.model("Lottery", lotterySchema);
