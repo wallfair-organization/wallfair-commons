@@ -25,10 +25,21 @@ const lotteryTicketSchema = new mongoose.Schema({
 
     createdAt: {
         type: String,
-        required: true,
+        required: false,
         default: Date.now,
     },
 
+    closed: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
+
+    closedAt: {
+        type: String,
+        required: false,
+        default: Date.now,     
+    }
 });
 
-module.exports = mongoose.model("Lottery", lotteryTicketSchema);
+module.exports = mongoose.model("LotteryTicket", lotteryTicketSchema);

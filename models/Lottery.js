@@ -16,7 +16,7 @@ const lotterySchema = new mongoose.Schema({
     winnerTicket: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'LotteryTicket',
-        required: true,
+        required: false,
     },
     createdAt: {
         type: String,
