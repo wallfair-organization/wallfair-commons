@@ -19,7 +19,7 @@ const tradeSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  totalWin: {
+  amountRewarded: {
     type: Number,
     required: true,
   },
