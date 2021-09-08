@@ -9,6 +9,7 @@ function Common() {
         require('./models/CategoryBetTemplate');
         require('./models/Lottery');
         require('./models/LotteryTicket')
+        require('./models/Trade')
     
         this.models.User = mongoose.model("User");
         this.models.ChatMessage = mongoose.model('ChatMessage');
@@ -17,6 +18,7 @@ function Common() {
         this.models.CategoryBetTemplate = mongoose.model('CategoryBetTemplate');
         this.models.Lottery = mongoose.model('Lottery');
         this.models.LotteryTicket = mongoose.model('LotteryTicket');
+        this.models.Trade = mongoose.model('Trade');
     }
 
     this.utils = {

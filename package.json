@@ -1,6 +1,6 @@
 {
   "name": "@wallfair.io/wallfair-commons",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Wallfair commons package to be used for Wallfair microservice structure",
   "main": "index.js",
   "scripts": {
