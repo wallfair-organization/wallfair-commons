@@ -19,13 +19,13 @@ const tradeSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  amountRewarded: {
+  outcomeTokens: {
     type: Number,
     required: true,
   },
   status: {
     type: String,
-    enum: ['active', 'closed'],
+    enum: ['active', 'sold', 'rewarded', 'closed'],
     default: 'active',
     required: true,
   },
