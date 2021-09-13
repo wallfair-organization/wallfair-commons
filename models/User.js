@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 
 const notificationSchema = new mongoose.Schema({
-  newBetInEvent: String,
-  newRewardReceived: String,
-  myBetResolved: String,
-  eventOnline: String,
-  eventOffline: String
+  newBetInEvent: Boolean,
+  newRewardReceived: Boolean,
+  myBetResolved: Boolean,
+  eventOnline: Boolean,
+  eventOffline: Boolean,
+  placeBet: Boolean,
+  cashoutBet: Boolean
 });
 
 const userSchema = new mongoose.Schema({
