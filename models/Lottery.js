@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const LotteryQuestion = new mongoose.Schema({
     index: Number,
     name: String,
+    imageUrl: String
 });
 
 const lotterySchema = new mongoose.Schema({
