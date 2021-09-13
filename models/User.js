@@ -10,6 +10,13 @@ const notificationSchema = new mongoose.Schema({
   cashoutBet: Boolean
 });
 
+const Preferences = new mongoose.Schema({
+  currency: {
+    type: String,
+    default: 'WFAIR',
+  },
+});
+
 const userSchema = new mongoose.Schema({
   phone: {
     type: String,
@@ -101,10 +108,13 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: 0
   },
-
   notificationSettings: {
     type: notificationSchema
-  }
+  },
+  preferences: {
+    type: Preferences,
+    default: {},
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
