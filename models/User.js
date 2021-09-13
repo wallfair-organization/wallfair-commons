@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
 
+const notificationSchema = new mongoose.Schema({
+  newBetInEvent: String,
+  newRewardReceived: String,
+  myBetResolved: String,
+  eventOnline: String,
+  eventOffline: String
+});
+
 const userSchema = new mongoose.Schema({
   phone: {
     type: String,
@@ -90,6 +98,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: false,
     default: 0
+  },
+
+  notificationSettings: {
+    type: notificationSchema
   }
 });
 
