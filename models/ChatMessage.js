@@ -5,10 +5,6 @@ const chatMessageSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    eventId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Event'
-    },
     roomId: {
         type: mongoose.Schema.Types.ObjectId,
     },
