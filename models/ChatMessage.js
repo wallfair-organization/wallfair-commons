@@ -5,14 +5,13 @@ const chatMessageSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    eventId: {
+    roomId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Event'
     },
     type: {
         type: String,
-        required: false,
-        max: 256,
+        required: true,
+        enum: ['game', 'event', 'user'],
     },
     message: {
         type: String,
