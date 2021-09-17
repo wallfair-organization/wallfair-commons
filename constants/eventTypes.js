@@ -1,4 +1,4 @@
-const notificationTypes = {
+const notificationEvents = {
     EVENT_START: 'Notification/EVENT_START',
     EVENT_RESOLVE: 'Notification/EVENT_RESOLVE',
     EVENT_CANCEL: 'Notification/EVENT_CANCEL',
@@ -10,4 +10,9 @@ const notificationTypes = {
     EVENT_BET_CASHED_OUT: 'Notification/EVENT_BET_CASHED_OUT',
 };
 
-exports.notificationTypes = notificationTypes
+exports.notificationEvents = notificationEvents
+
+const eventTypes = [...Object.values(notificationEvents)]
+
+exports.universalEventTypes = eventTypes
+

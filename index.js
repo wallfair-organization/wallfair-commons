@@ -1,3 +1,5 @@
+const {notificationEvents} = require("./constants/eventTypes");
+
 function Common() {
     this.models = {};
 
@@ -10,7 +12,7 @@ function Common() {
         require('./models/Lottery');
         require('./models/LotteryTicket')
         require('./models/Trade')
-    
+
         this.models.User = mongoose.model("User");
         this.models.ChatMessage = mongoose.model('ChatMessage');
         this.models.Event = mongoose.model('Event');
@@ -19,6 +21,7 @@ function Common() {
         this.models.Lottery = mongoose.model('Lottery');
         this.models.LotteryTicket = mongoose.model('LotteryTicket');
         this.models.Trade = mongoose.model('Trade');
+        this.models.UniversalEvent = mongoose.model('UniversalEvent');
     }
 
     this.utils = {
@@ -26,6 +29,12 @@ function Common() {
             return require("./utils/gaussian")(mean, stdev);
         }
     };
+
+    this.constants = {
+        events: {
+            notification: notificationEvents
+        }
+    }
 }
 
 var common = new Common();

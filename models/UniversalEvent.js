@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {notificationTypes} = require("../constants/eventTypes");
+const {universalEventTypes} = require("../constants/eventTypes");
 
 const universalEventSchema = mongoose.Schema({
     //Aggregate, if there is an entity associated with an event (i.e Bet, Game)
@@ -9,7 +9,7 @@ const universalEventSchema = mongoose.Schema({
     //A list of registered types
     type: {
         type: String,
-        enum: Object.values(notificationTypes)
+        enum: universalEventTypes
     },
     //A short human readable message
     message: {type: String},
@@ -21,4 +21,4 @@ const universalEventSchema = mongoose.Schema({
     version: {type: Number, default: 1}
 },    {timestamps: true})
 
-module.exports = mongoose.model
+module.exports = mongoose.model("UniversalEvent", universalEventSchema)
