@@ -13,6 +13,8 @@ const universalEventSchema = mongoose.Schema({
     },
     //A short human readable message
     message: {type: String},
+    //Redis channel, socket.io room, amqp routing or similar
+    channel: {type: String},
     //Event payload
     data: {},
     //Event source, pid, service, channel, etc.
