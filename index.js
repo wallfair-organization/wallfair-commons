@@ -12,6 +12,8 @@ function Common() {
         require('./models/Lottery');
         require('./models/LotteryTicket')
         require('./models/Trade')
+        require('./models/UniversalEvent')
+
 
         this.models.User = mongoose.model("User");
         this.models.ChatMessage = mongoose.model('ChatMessage');
