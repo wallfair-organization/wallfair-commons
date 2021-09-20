@@ -20,7 +20,7 @@ const Preferences = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
   phone: {
     type: String,
-    required: true,
+    required: false,
     max: 255,
   },
   name: {
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: false,
+    required: true,
     max: 128,
     min: 2,
   },
