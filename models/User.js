@@ -98,6 +98,11 @@ const userSchema = new mongoose.Schema({
     max: 6,
     min: 6,
   },
+  passwordResetToken: {
+    type: String,
+    required: false,
+    max: 12
+  },
   date: {
     type: Date,
     required: true,
