@@ -38,10 +38,15 @@ const betSchema = new mongoose.Schema({
         required: false,
         max: 1200,
     },
+    evidenceSource: {
+        type: String,
+        required: false,
+        max: 2200,
+    },
     evidenceDescription: {
         type: String,
         required: false,
-        max: 1200,
+        max: 2200,
     },
     evidenceActual: {
         type: String,
