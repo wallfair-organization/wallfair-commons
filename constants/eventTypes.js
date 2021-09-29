@@ -29,7 +29,13 @@ const notificationEvents = {
     EVENT_BET_DISPUTED: 'Notification/EVENT_BET_DISPUTED',
     EVENT_BET_CANCELED: 'Notification/EVENT_BET_CANCELED',
     // Reward system related events
-    EVENT_USER_REWARDED: 'Notification/EVENT_USER_REWARDED'
+    EVENT_USER_REWARDED: 'Notification/EVENT_USER_REWARDED',
+    // Casino events
+    EVENT_CASINO_END: 'Casino/CASINO_END',
+    EVENT_CASINO_START: 'Casino/CASINO_START',
+    EVENT_CASINO_REWARD: 'Casino/CASINO_REWARD',
+    EVENT_CASINO_PLACE_BET: 'Casino/CASINO_PLACE_BET',
+    EVENT_CASINO_CASHOUT: 'Casino/CASINO_CASHOUT'
 };
 
 exports.notificationEvents = notificationEvents
