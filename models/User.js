@@ -120,10 +120,9 @@ const userSchema = new mongoose.Schema({
     type: Preferences,
     default: {},
   },
-  rewards: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Reward'
-  }]
+  trackers: {
+    type: Object
+  }
 });
 
 module.exports = mongoose.model("User", userSchema);
