@@ -70,6 +70,10 @@ const eventSchema = new mongoose.Schema({
         required: true,
         default: Date.now,
     },
+    deactivatedAt: {
+        type: Date,
+        required: false
+    },
     bets: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Bet'
