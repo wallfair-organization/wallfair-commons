@@ -12,6 +12,7 @@ function Common() {
         require('./models/Lottery');
         require('./models/LotteryTicket')
         require('./models/Trade')
+        require('./models/Reward')
         require('./models/UniversalEvent')
 
 
@@ -23,6 +24,7 @@ function Common() {
         this.models.Lottery = mongoose.model('Lottery');
         this.models.LotteryTicket = mongoose.model('LotteryTicket');
         this.models.Trade = mongoose.model('Trade');
+        this.models.Reward = mongoose.model('Reward');
         this.models.UniversalEvent = mongoose.model('UniversalEvent');
     }
 
