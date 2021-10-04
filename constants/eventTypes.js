@@ -30,6 +30,12 @@ const notificationEvents = {
     EVENT_BET_CANCELED: 'Notification/EVENT_BET_CANCELED',
     // Reward system related events
     EVENT_USER_REWARDED: 'Notification/EVENT_USER_REWARDED',
+    // Reward extra actions needed to fullfill some rewards
+    EVENT_USER_CONFIRMED_WITH_REF: 'Notification/EVENT_USER_CONFIRMED_WITH_REF',
+    EVENT_USER_SHARED_LINK_FIRST_VISITED: 'Notification/EVENT_USER_SHARED_LINK_FIRST_VISITED',
+    EVENT_USER_BETTED_MAX_STAKE_5_TIMES_IN_ROW: 'Notification/EVENT_USER_BETTED_MAX_STAKE_5_TIMES_IN_ROW',
+    EVENT_USER_PLAYED_A_GAME: 'Notification/EVENT_USER_PLAYED_A_GAME',
+    EVENT_USER_WAS_ACTIVE_LONG_TIME: 'Notification/EVENT_USER_WAS_ACTIVE_LONG_TIME',
     // Casino events
     EVENT_CASINO_END: 'Casino/CASINO_END',
     EVENT_CASINO_START: 'Casino/CASINO_START',
