@@ -122,6 +122,10 @@ const userSchema = new mongoose.Schema({
   },
   trackers: {
     type: Object
+  },
+  aboutMe: {
+    type: String,
+    required: false,
   }
 });
 
