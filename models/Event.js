@@ -79,6 +79,10 @@ const eventSchema = new mongoose.Schema({
     bets: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Bet'
+    }],
+    bookmarks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }]
 });
 
