@@ -21,7 +21,9 @@ const Metadata = new mongoose.Schema({
         // "false" when unsubscribed, 
         // "pending" when sub is requested, 
         // "true" when sub is confirmed
-    }
+    },
+    'youtube_last_synced': String,
+    'youtube_channel_id': String,
 });
 
 const eventSchema = new mongoose.Schema({
