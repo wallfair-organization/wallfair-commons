@@ -126,6 +126,11 @@ const userSchema = new mongoose.Schema({
   aboutMe: {
     type: String,
     required: false,
+  },
+  status: {
+    type: String,
+    enum: ['active', 'inactive', 'locked'],
+    default: 'active'
   }
 });
 
