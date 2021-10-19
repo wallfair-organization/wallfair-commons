@@ -30,7 +30,7 @@ const notificationEvents = {
     EVENT_BET_DISPUTED: 'Notification/EVENT_BET_DISPUTED',
     EVENT_BET_CANCELED: 'Notification/EVENT_BET_CANCELED',
     // Reward system related events
-    EVENT_USER_REWARDED: 'Notification/USER_AWARD',
+    EVENT_USER_AWARD: 'Notification/USER_AWARD',
     // Casino events
     EVENT_CASINO_END: 'Casino/CASINO_END',
     EVENT_CASINO_START: 'Casino/CASINO_START',
