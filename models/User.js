@@ -131,7 +131,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['active', 'inactive', 'locked'],
     default: 'active'
-  }
+  },
+  auth0Id: { type: Schema.Types.String },
 });
 
 module.exports = mongoose.model("User", userSchema);
