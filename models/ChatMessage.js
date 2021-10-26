@@ -11,7 +11,6 @@ const chatMessageSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ['GAME', 'EVENT', 'USER', 'BET_CREATE', 'BET_PLACE', 'BET_PULLOUT'],
   },
   message: {
     type: String,
