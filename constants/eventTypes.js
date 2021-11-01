@@ -37,7 +37,8 @@ const notificationEvents = {
     EVENT_CASINO_REWARD: 'Casino/CASINO_REWARD',
     EVENT_CASINO_PLACE_BET: 'Casino/CASINO_PLACE_BET',
     EVENT_CASINO_CANCEL_BET: 'Casino/CASINO_CANCEL_BET',
-    EVENT_CASINO_CASHOUT: 'Casino/CASINO_CASHOUT'
+    EVENT_CASINO_CASHOUT: 'Casino/CASINO_CASHOUT',
+    EVENT_CASINO_LOST: 'Casino/EVENT_CASINO_LOST'
 };
 
 exports.notificationEvents = notificationEvents
