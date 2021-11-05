@@ -14,7 +14,6 @@ function Common() {
         require('./models/Trade')
         require('./models/UniversalEvent')
 
-
         this.models.User = mongoose.model("User");
         this.models.ChatMessage = mongoose.model('ChatMessage');
         this.models.Event = mongoose.model('Event');
