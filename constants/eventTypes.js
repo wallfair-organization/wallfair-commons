@@ -38,7 +38,11 @@ const notificationEvents = {
     EVENT_CASINO_PLACE_BET: 'Casino/CASINO_PLACE_BET',
     EVENT_CASINO_CANCEL_BET: 'Casino/CASINO_CANCEL_BET',
     EVENT_CASINO_CASHOUT: 'Casino/CASINO_CASHOUT',
-    EVENT_CASINO_LOST: 'Casino/EVENT_CASINO_LOST'
+    EVENT_CASINO_LOST: 'Casino/EVENT_CASINO_LOST',
+    //simple games events
+    EVENT_GAME_ROULETTE: 'SimpleGame/GAME_ROULETTE',
+    EVENT_GAME_COIN_TOSS: 'SimpleGame/GAME_COIN_TOSS',
+    EVENT_GAME_WHEEL: 'SimpleGame/GAME_WHEEL'
 };
 
 exports.notificationEvents = notificationEvents
