@@ -12,5 +12,9 @@
     "nodejs"
   ],
   "author": "Guilherme Mussi <mussi@wallfair.io>",
-  "license": "AGPL-3.0-or-later"
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "mongoose": "^6.0.12",
+    "pg": "^8.7.1"
+  }
 }

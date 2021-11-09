@@ -1,4 +1,10 @@
 const {notificationEvents} = require("./constants/eventTypes");
+const {
+    getPostgresConnection,
+    createDBTransaction,
+    commitDBTransaction,
+    rollbackDBTransaction,
+} = require("./utils/db_helpers");
 
 function Common() {
     this.models = {};
@@ -28,14 +34,18 @@ function Common() {
     this.utils = {
         getGaussian: (mean, stdev) => {
             return require("./utils/gaussian")(mean, stdev);
-        }
+        },
+        getPostgresConnection,
+        createDBTransaction,
+        commitDBTransaction,
+        rollbackDBTransaction,
     };
 
     this.constants = {
         events: {
             notification: notificationEvents
         }
-    }
+    };
 }
 
 var common = new Common();
