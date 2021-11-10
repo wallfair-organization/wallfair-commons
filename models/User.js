@@ -121,6 +121,9 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: 0
   },
+  tokensRequestedAt: {
+    type: Date
+  },
   notificationSettings: {
     type: notificationSchema
   },
