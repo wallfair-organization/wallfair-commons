@@ -1,47 +1,47 @@
-const mongoose = require("mongoose");
+module.exports = (mongoose) => {
+    const Outcome = new mongoose.Schema({
+        index: Number,
+        name: String,
+    });
 
-const Outcome = new mongoose.Schema({
-    index: Number,
-    name: String,
-});
+    const categoryBetTemplateSchema = new mongoose.Schema({
+        category: {
+            type: String,
+            required: true
+        },
 
-const categoryBetTemplateSchema = new mongoose.Schema({
-  category: {
-      type: String,
-      required: true
-  },
+        name: {
+            type: String,
+            required: true,
+        },
 
-  name: {
-      type: String,
-      required: true,
-  },
+        marketQuestion: {
+            type: String,
+            required: true,
+            max: 255,
+        },
 
-  marketQuestion: {
-      type: String,
-      required: true,
-      max: 255,
-  },
+        evidenceDescription: {
+            type: String,
+            required: false,
+            max: 1200,
+        },
 
-  evidenceDescription: {
-      type: String,
-      required: false,
-      max: 1200,
-  },
+        startType: {
+            type: Boolean,
+            required: true,
+            enum: ['Immediately', 'After some time']
+        },
 
-  startType: {
-      type: Boolean,
-      required: true,
-      enum: ['Immediately', 'After some time']
-  },
+        startInMinutes: {
+            type: Number,
+            required: false
+        },
 
-  startInMinutes: {
-      type: Number,
-      required: false
-  },
+        outcomes: [{
+            type: Outcome
+        }],
+    });
 
-  outcomes: [{
-      type: Outcome
-  }],
-});
-
-module.exports = mongoose.model("CategoryBetTemplate", categoryBetTemplateSchema);
+    return mongoose.model("CategoryBetTemplate", categoryBetTemplateSchema);
+}

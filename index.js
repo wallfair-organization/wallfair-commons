@@ -10,15 +10,15 @@ function Common() {
     this.models = {};
 
     this.initModels = (mongoose) => {
-        require('./models/Bet');
-        require('./models/ChatMessage');
-        require('./models/Event');
-        require('./models/User');
-        require('./models/CategoryBetTemplate');
-        require('./models/Lottery');
-        require('./models/LotteryTicket')
-        require('./models/Trade')
-        require('./models/UniversalEvent')
+        require('./models/Bet')(mongoose);
+        require('./models/ChatMessage')(mongoose);
+        require('./models/Event')(mongoose);
+        require('./models/User')(mongoose);
+        require('./models/CategoryBetTemplate')(mongoose);
+        require('./models/Lottery')(mongoose);
+        require('./models/LotteryTicket')(mongoose)
+        require('./models/Trade')(mongoose)
+        require('./models/UniversalEvent')(mongoose)
 
         this.models.User = mongoose.model("User");
         this.models.ChatMessage = mongoose.model('ChatMessage');
