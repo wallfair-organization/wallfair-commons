@@ -29,14 +29,14 @@ const getPool = () =>{
 class DBUtils {
 
     async getPostgresConnection() {
-        return await getPool().connect();
+        return await (await getPool()).connect();
     }
 
     /**
      * @returns {Promise<Client>}
      */
     async createDBTransaction() {
-        const client = await getPool().connect();
+        const client = await (await getPool()).connect();
         await client.query(BEGIN);
         return client;
     }
