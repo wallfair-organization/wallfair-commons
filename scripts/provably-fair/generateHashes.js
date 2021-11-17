@@ -3,7 +3,6 @@ dotenv.config();
 
 const fs = require('fs');
 const path = require('path');
-// const crash = require('./crash');
 const crash2 = require('./crash2');
 
 const filePath = path.join(__dirname, 'output/hashes.txt');
