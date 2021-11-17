@@ -57,9 +57,9 @@ function divisible(hash, mod) {
   return val === 0;
 }
 
-function crashPointFromHash(serverSeed) {
+function crashPointFromHash(crashHash) {
   const hash = crypto
-    .createHmac("sha256", serverSeed)
+    .createHmac("sha256", crashHash)
     .update(salt)
     .digest("hex");
 
@@ -103,9 +103,7 @@ function verifyCrash(crashHash) {
   return { gameResult, previousHundredGames };
 }
 
-// console.log(verifyCrash('ed3f7ed542679582a6d9bdb7d270072a32fb447651210206fe1dce5e131596b5'));
-
-
+// console.log(verifyCrash('fb9837dc8f32b9f2ce42442ae10f68424d836e34f0632b0c4b8b28097eb7560f'));
 
 module.exports = {
     verifyCrash,
