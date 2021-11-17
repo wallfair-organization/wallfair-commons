@@ -6,7 +6,11 @@ const {GENESIS_SECRET} = require('./constants')// This number may NOT be leaked
 // https://etherscan.io/block/13626940
 // Mined by
 // public seed
-const salt = "0xea674fdde714fd979de3edf0f56aa9716b898ec8";
+const salt = "0xea674fdde714fd979de3edf0f56aa9716b898ec8"; //crash game
+// https://etherscan.io/block/13634742
+// Mined by
+// public seed
+// const salt = "0x45a36a8e118c37e4c47ef4ab827a7c9e579e11e2"; //pump and dump
 
 //just for GENESIS_SECRET
 function generateInitialRandomHex(length = 64) {
