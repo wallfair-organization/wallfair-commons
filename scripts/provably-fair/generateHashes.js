@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+const { performance } = require('perf_hooks');
 const fs = require('fs');
 const path = require('path');
 const crash2 = require('./crash2');
