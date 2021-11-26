@@ -137,6 +137,10 @@ module.exports = (mongoose) => {
       type: String,
       required: false,
     },
+    alpacaBuilderProps: {
+      type: Object,
+      required: false,
+    },
     status: {
       type: String,
       enum: ['active', 'inactive', 'locked'],
