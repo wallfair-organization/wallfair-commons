@@ -15,6 +15,7 @@ const notificationEvents = {
     EVENT_USER_SET_CURRENCY: `Notification/EVENT_USER_SET_CURRENCY`,
     EVENT_USER_REWARD: 'Notification/EVENT_USER_REWARD',
     EVENT_USER_CHANGED_ABOUT_ME: 'Notification/EVENT_USER_CHANGED_ABOUT_ME',
+    EVENT_USER_KYC_UPDATE: 'Notification/EVENT_USER_KYC_UPDATE',
     // Event related events
     EVENT_ONLINE: 'Notification/EVENT_ONLINE',
     EVENT_OFFLINE: 'Notification/EVENT_OFFLINE',

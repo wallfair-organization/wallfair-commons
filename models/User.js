@@ -15,6 +15,27 @@ module.exports = (mongoose) => {
       default: 'WFAIR',
     },
   });
+  
+  const KycType = new mongoose.Schema({
+    status : {
+      type: String,
+      enum: ['pending', 'approved', 'rejected', 'error'],
+      required:false,
+    },
+    date : {
+      type: Date,
+      required:false,
+    },
+    uid:{
+      type: String,
+      required:false,
+    },
+    refreshToken:{
+      type: String,
+      required:false,
+    }
+  });
+  
 
   const userSchema = new mongoose.Schema({
     phone: {
@@ -147,6 +168,10 @@ module.exports = (mongoose) => {
       default: 'active'
     },
     auth0Id: { type: mongoose.Schema.Types.String },
+    kyc: {
+      type: KycType,
+      default: {},
+    },
   });
 
   return mongoose.model("User", userSchema);
