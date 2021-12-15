@@ -172,6 +172,15 @@ module.exports = (mongoose) => {
       type: KycType,
       default: {},
     },
+    tosConsentedAt: {
+      type: Date,
+      required: false,
+    },
+    accountSource: {
+      type: String,
+      default: 'email',
+      required: false,
+    }
   });
 
   return mongoose.model("User", userSchema);
