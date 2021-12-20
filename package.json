@@ -1,6 +1,6 @@
 {
   "name": "@wallfair.io/wallfair-commons",
-  "version": "1.8.11",
+  "version": "1.8.12",
   "description": "Wallfair commons package to be used for Wallfair microservice structure",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,7 @@
   "author": "Guilherme Mussi <mussi@wallfair.io>",
   "license": "AGPL-3.0-or-later",
   "dependencies": {
+    "amqplib": "^0.8.0",
     "dotenv": "^10.0.0",
     "mongoose": "^6.0.12",
     "pg": "^8.7.1"
