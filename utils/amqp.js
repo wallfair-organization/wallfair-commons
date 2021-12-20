@@ -2,10 +2,10 @@ const amqplib = require('amqplib');
 
 const rabbitUrl = process.env.RABBITMQ_CONNECTION;
 
-let connection, channel;
+let channel;
 
 const initAmqp = async () => {
-  connection = await amqplib.connect(rabbitUrl, {
+  const connection = await amqplib.connect(rabbitUrl, {
     heartbeat: 60,
     noDelay: true,
   });
