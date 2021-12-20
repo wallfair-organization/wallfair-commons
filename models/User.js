@@ -164,7 +164,7 @@ module.exports = (mongoose) => {
     },
     status: {
       type: String,
-      enum: ['active', 'inactive', 'locked'],
+      enum: ['active', 'inactive', 'locked', 'banned'],
       default: 'active'
     },
     auth0Id: { type: mongoose.Schema.Types.String },
@@ -179,6 +179,16 @@ module.exports = (mongoose) => {
     accountSource: {
       type: String,
       default: 'email',
+      required: false,
+    },
+    reactivateOn: {
+      type: Date,
+      default: null,
+      required: false,
+    },
+    statusDescription: {
+      type: String,
+      default: null,
       required: false,
     }
   });
