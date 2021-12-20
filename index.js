@@ -5,6 +5,10 @@ const {
     commitDBTransaction,
     rollbackDBTransaction,
 } = require("./utils/db_helpers");
+const {
+    initAmqp,
+    sendMessage,
+} = require('./utils/amqp');
 
 function Common() {
     this.models = {};
@@ -39,6 +43,8 @@ function Common() {
         createDBTransaction,
         commitDBTransaction,
         rollbackDBTransaction,
+        initAmqp,
+        sendMessage,
     };
 
     this.constants = {
