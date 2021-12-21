@@ -95,6 +95,14 @@ module.exports = (mongoose) => {
       type: String,
       required: false,
     },
+    cid: {
+      type: String,
+      required: false,
+    },
+    sid: {
+      type: String,
+      required: false,
+    },
     openBets: {
       type: [Object],
       required: true,
