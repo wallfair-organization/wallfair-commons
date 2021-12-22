@@ -15,7 +15,7 @@ module.exports = (mongoose) => {
       default: 'WFAIR',
     },
   });
-  
+
   const KycType = new mongoose.Schema({
     status : {
       type: String,
@@ -35,7 +35,7 @@ module.exports = (mongoose) => {
       required:false,
     }
   });
-  
+
 
   const userSchema = new mongoose.Schema({
     phone: {
@@ -198,6 +198,10 @@ module.exports = (mongoose) => {
       type: String,
       default: null,
       required: false,
+    },
+    bonus: {
+      type: [Object],
+      default: []
     }
   });
 
