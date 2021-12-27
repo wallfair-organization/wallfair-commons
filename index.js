@@ -14,6 +14,7 @@ function Common() {
     this.models = {};
 
     this.initModels = (mongoose) => {
+        require('./models/ApiLogs')(mongoose);
         require('./models/Bet')(mongoose);
         require('./models/ChatMessage')(mongoose);
         require('./models/Event')(mongoose);
@@ -24,6 +25,7 @@ function Common() {
         require('./models/Trade')(mongoose)
         require('./models/UniversalEvent')(mongoose)
 
+        this.models.ApiLogs = mongoose.model("ApiLogs");
         this.models.User = mongoose.model("User");
         this.models.ChatMessage = mongoose.model('ChatMessage');
         this.models.Event = mongoose.model('Event');
