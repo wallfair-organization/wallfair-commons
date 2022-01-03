@@ -4,9 +4,16 @@ class Service {
     this.model = mongoose.models.User;
   }
 
+  getUser = async (params) => {
+    return await this.model.findOne(params);
+  }
+
+  getUserById = async (id) => {
+    return await this.getUser({_id: this.mongoose.Types.ObjectId(id)});
+  }
+
   getUserCount = async () => {
-    const total = await this.model.countDocuments().exec();
-    return total;
+    return await this.model.countDocuments().exec();
   }
 }
 
