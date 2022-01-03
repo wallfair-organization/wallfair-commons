@@ -33,6 +33,20 @@ class Service {
 
     return userData ? true : false;
   }
+
+  addBonusFlagOnly = async (userId, bonusCfg) => {
+    if(userId && bonusCfg) {
+      return await this.model.updateOne({
+        _id: this.mongoose.Types.ObjectId(userId)
+      }, {
+        $push: {
+          bonus: {
+            name: bonusCfg.type
+          }
+        }
+      });
+    }
+  }
 }
 
 module.exports = Service;

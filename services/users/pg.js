@@ -2,7 +2,7 @@ const prepareProjection = (projection) => {
   let output = null;
   if (projection && projection.length) {
     output = projection.map((column) => {
-      if(column === "date") {
+      if (column === "date") {
         return 'created_at';
       }
       return column;
@@ -16,8 +16,8 @@ const prepareJsonPath = (params) => {
   const key = Object.keys(params)[0];
   const pathValue = params[key];
 
-  const jsonPath = key.split('.').map((item, index)=> {
-    if(index > 0) {
+  const jsonPath = key.split('.').map((item, index) => {
+    if (index > 0) {
       return `'${item}'`;
     }
     return item;
@@ -75,7 +75,9 @@ class Service {
   getUserCountBy = async (params) => {
     const {pathString, pathValue} = prepareJsonPath(params)
 
-    const queryRaw = `SELECT count(id) as total FROM users WHERE ${pathString} = '${pathValue}'`;
+    const queryRaw = `SELECT count(id) as total
+                      FROM users
+                      WHERE ${pathString} = '${pathValue}'`;
     const queryRes = await this.queryRunner.query(queryRaw);
 
     const total = queryRes?.[0]?.total || 0;
@@ -83,12 +85,31 @@ class Service {
   }
 
   checkUserGotBonus = async (bonusName, userId) => {
-    const queryRaw = `SELECT userId FROM users, JSONB_ARRAY_ELEMENTS(bonus) AS bonuses WHERE bonuses ->> 'name' = '${bonusName}';`;
+    const queryRaw = `SELECT userId
+                      FROM users,
+                           JSONB_ARRAY_ELEMENTS(bonus) AS bonuses
+                      WHERE bonuses ->> 'name' = '${bonusName}';`;
     const queryRes = await this.queryRunner.query(queryRaw);
 
     const userData = queryRes?.[0] || null;
 
     return userData ? true : false;
+  }
+
+  addBonusFlagOnly = async (userId, bonusCfg) => {
+    if (userId && bonusCfg) {
+      const toPush = JSON.stringify({
+        bonus: {
+          name: bonusCfg.type
+        }
+      });
+      const queryRaw = `UPDATE users
+                        SET bonus = bonus || '${toPush}'::jsonb
+                        WHERE userId = '${userId}'
+                        returning *;`;
+      const queryRes = await this.queryRunner.query(queryRaw);
+
+    }
   }
 }
 
