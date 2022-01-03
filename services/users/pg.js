@@ -5,10 +5,10 @@ class Service {
   }
 
   getUserCount = async () => {
-    const queryRaw = `SELECT * FROM casino_trades WHERE state = $1`
-    const queryRes = await this.queryRunner.query(queryRaw, [2]);
+    const queryRaw = `SELECT count(id) as total FROM users`
+    const queryRes = await this.queryRunner.query(queryRaw);
 
-    const total = queryRes.length || 0;
+    const total = queryRes?.[0]?.total || 0;
     return total;
   }
 }
