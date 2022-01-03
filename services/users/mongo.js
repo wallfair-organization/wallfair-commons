@@ -4,12 +4,16 @@ class Service {
     this.model = mongoose.models.User;
   }
 
-  getUser = async (params) => {
-    return await this.model.findOne(params);
+  getUser = async (params, projection = null, options = {}) => {
+    return await this.model.findOne(params, projection, options);
   }
 
-  getUserById = async (id) => {
-    return await this.getUser({_id: this.mongoose.Types.ObjectId(id)});
+  getUserById = async (id, projection = null, options) => {
+    return await this.getUser({_id: this.mongoose.Types.ObjectId(id)}, projection, options);
+  }
+
+  getRefByUserId = async (id) => {
+    return await this.getUser({ref: id}, ['id', 'username', 'email', 'date']);
   }
 
   getUserCount = async () => {
