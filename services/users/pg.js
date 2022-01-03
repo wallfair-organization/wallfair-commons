@@ -99,9 +99,7 @@ class Service {
   addBonusFlagOnly = async (userId, bonusCfg) => {
     if (userId && bonusCfg) {
       const toPush = JSON.stringify({
-        bonus: {
           name: bonusCfg.type
-        }
       });
       const queryRaw = `UPDATE users
                         SET bonus = bonus || '${toPush}'::jsonb
