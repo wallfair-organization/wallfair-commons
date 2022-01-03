@@ -5,7 +5,8 @@ class Service {
   }
 
   getUser = async (params, projection = null, options = {}) => {
-    return await this.model.findOne(params, projection, options);
+    const user = await this.model.findOne(params, projection, options);
+    return user ? user.toObject() : null;
   }
 
   getUserById = async (id, projection = null, options) => {
@@ -18,6 +19,19 @@ class Service {
 
   getUserCount = async () => {
     return await this.model.countDocuments().exec();
+  }
+
+  getUserCountBy = async (params) => {
+    return await this.model.countDocuments(params).exec();
+  }
+
+  checkUserGotBonus = async (bonusName, userId) => {
+    const userData = await this.getUser({
+      'bonus.name': bonusName,
+      '_id': userId
+    }, ['_id']);
+
+    return userData ? true : false;
   }
 }
 
