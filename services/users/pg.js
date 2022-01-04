@@ -81,6 +81,15 @@ class Service {
     return queryRes?.[0];
   }
 
+  getUserByEmail = async (email) => {
+    const queryRaw = `SELECT *
+                      FROM users
+                      WHERE email = '${email}'`;
+
+    const queryRes = await this.queryRunner.query(queryRaw);
+    return queryRes?.[0];
+  }
+
   getUserCount = async () => {
     const queryRaw = `SELECT count(id) as total
                       FROM users`
@@ -149,6 +158,7 @@ class Service {
       .update('users')
       .set(objKeysToLowerCase(toUpdate))
       .where("userid = :userId", { userId: params.userid })
+      .orWhere("email = :email", { email: params.email })
       .execute();
 
     console.log('queryRes', queryRes);

@@ -21,6 +21,10 @@ class Service {
     return await this.getUser({walletAddress});
   }
 
+  getUserByEmail = async (email) => {
+    return await this.getUser({email});
+  }
+
   getUserCount = async () => {
     return await this.model.countDocuments().exec();
   }
@@ -67,7 +71,7 @@ class Service {
 
   updateUser = async (params, toUpdate) => {
     return this.model.updateOne({
-      '_id': params._id
+      $or: [{'_id': params._id}, {'email': params.email}]
     }, toUpdate)
   }
 }
