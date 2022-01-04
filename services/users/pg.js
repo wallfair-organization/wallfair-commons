@@ -12,6 +12,14 @@ const prepareProjection = (projection) => {
   return output || '*';
 }
 
+const objKeysToLowerCase = (source) => {
+  return Object.keys(source)
+    .reduce((destination, key) => {
+      destination[key.toLowerCase()] = source[key];
+      return destination;
+    }, {});
+}
+
 const prepareJsonPath = (params) => {
   const key = Object.keys(params)[0];
   const pathValue = params[key];
@@ -35,6 +43,7 @@ class Service {
   constructor(pg) {
     this.pg = pg;
     this.queryRunner = pg.createQueryRunner();
+    this.queryBuilder = pg.createQueryBuilder();
   }
 
   getUser = async (params, projection) => {
@@ -58,6 +67,15 @@ class Service {
     const queryRaw = `SELECT id, username, email, created_at
                       FROM users
                       WHERE ref = '${id}'`;
+
+    const queryRes = await this.queryRunner.query(queryRaw);
+    return queryRes?.[0];
+  }
+
+  getUserByWallet = async (walletAddress) => {
+    const queryRaw = `SELECT *
+                      FROM users
+                      WHERE walletaddress = '${walletAddress}'`;
 
     const queryRes = await this.queryRunner.query(queryRaw);
     return queryRes?.[0];
@@ -88,12 +106,24 @@ class Service {
     const queryRaw = `SELECT userId
                       FROM users,
                            JSONB_ARRAY_ELEMENTS(bonus) AS bonuses
-                      WHERE bonuses ->> 'name' = '${bonusName}';`;
+                      WHERE bonuses ->> 'name' = '${bonusName}' AND userid = ${userId};`;
     const queryRes = await this.queryRunner.query(queryRaw);
 
     const userData = queryRes?.[0] || null;
 
     return userData ? true : false;
+  }
+
+  getUsersCountByBonus = async (bonusName) => {
+    const queryRaw = `SELECT count(id) as total
+                      FROM users,
+                           JSONB_ARRAY_ELEMENTS(bonus) AS bonuses
+                      WHERE bonuses ->> 'name' = '${bonusName}';`;
+    const queryRes = await this.queryRunner.query(queryRaw);
+
+    const counter = queryRes?.[0]?.total || null;
+
+    return counter;
   }
 
   addBonusFlagOnly = async (userId, bonusCfg) => {
@@ -108,6 +138,16 @@ class Service {
       const queryRes = await this.queryRunner.query(queryRaw);
 
     }
+  }
+
+  updateUser = async (params, toUpdate) => {
+    const queryRes = await this.queryBuilder
+      .update('users')
+      .set(objKeysToLowerCase(toUpdate))
+      .where("userid = :userId", { userId: params.userid })
+      .execute();
+
+    console.log('queryRes', queryRes);
   }
 }
 

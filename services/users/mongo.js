@@ -17,6 +17,10 @@ class Service {
     return await this.getUser({ref: id}, ['id', 'username', 'email', 'date']);
   }
 
+  getUserByWallet = async (walletAddress) => {
+    return await this.getUser({walletAddress});
+  }
+
   getUserCount = async () => {
     return await this.model.countDocuments().exec();
   }
@@ -34,6 +38,14 @@ class Service {
     return userData ? true : false;
   }
 
+  getUsersCountByBonus = async (bonusName) => {
+    const counter = await this.model.countDocuments({
+      'bonus.name': bonusName
+    });
+
+    return counter;
+  }
+
   addBonusFlagOnly = async (userId, bonusCfg) => {
     if(userId && bonusCfg) {
       return await this.model.updateOne({
@@ -46,6 +58,12 @@ class Service {
         }
       });
     }
+  }
+
+  updateUser = async (params, toUpdate) => {
+    return this.model.updateOne({
+      '_id': params._id
+    }, toUpdate)
   }
 }
 
