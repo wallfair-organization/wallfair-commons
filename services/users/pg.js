@@ -126,13 +126,17 @@ class Service {
     return counter;
   }
 
-  addBonusFlagOnly = async (userId, bonusCfg) => {
+  addBonusFlagOnly = async (userId, bonusCfg, state = 1) => {
     if (userId && bonusCfg) {
-      const toPush = JSON.stringify({
-          name: bonusCfg.type
-      });
+      const toPush = {};
+      toPush.name = bonusCfg.type;
+      toPush.state = state;
+      if(bonusCfg.amount) {
+        toPush.amount = bonusCfg.amount;
+      }
+
       const queryRaw = `UPDATE users
-                        SET bonus = bonus || '${toPush}'::jsonb
+                        SET bonus = bonus || '${JSON.stringify(toPush)}'::jsonb
                         WHERE userId = '${userId}'
                         returning *;`;
       const queryRes = await this.queryRunner.query(queryRaw);

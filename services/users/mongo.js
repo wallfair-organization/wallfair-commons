@@ -46,15 +46,20 @@ class Service {
     return counter;
   }
 
-  addBonusFlagOnly = async (userId, bonusCfg) => {
+  addBonusFlagOnly = async (userId, bonusCfg, state = 1) => {
     if(userId && bonusCfg) {
+      const toSave = {};
+      toSave.name = bonusCfg.type;
+      toSave.state = state;
+      if(bonusCfg.amount) {
+        toSave.amount = bonusCfg.amount;
+      }
+
       return await this.model.updateOne({
         _id: this.mongoose.Types.ObjectId(userId)
       }, {
         $push: {
-          bonus: {
-            name: bonusCfg.type
-          }
+          bonus: toSave
         }
       });
     }
