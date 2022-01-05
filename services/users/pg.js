@@ -5,6 +5,10 @@ const prepareProjection = (projection) => {
       if (column === "date") {
         return 'created_at';
       }
+
+      if (column === "_id") {
+        return 'userid';
+      }
       return column;
     }).join(',');
   }
@@ -15,7 +19,12 @@ const prepareProjection = (projection) => {
 const objKeysToLowerCase = (source) => {
   return Object.keys(source)
     .reduce((destination, key) => {
-      destination[key.toLowerCase()] = source[key];
+      if(key === "_id") {
+        destination['userid'] = source[key];
+      } else {
+        destination[key.toLowerCase()] = source[key];
+      }
+
       return destination;
     }, {});
 }
@@ -37,6 +46,14 @@ const prepareJsonPath = (params) => {
     pathString,
     pathValue
   };
+}
+
+const prepareArrayForIn = (ids) => {
+  const elements = ids.map((item, index) => {
+    return `'${item}'`;
+  });
+
+  return elements.join(',');
 }
 
 class Service {
@@ -109,6 +126,32 @@ class Service {
 
     const total = queryRes?.[0]?.total || 0;
     return total;
+  }
+
+  getUsersById = async (ids, projection) => {
+    const preparedProjection = projection ? prepareProjection(projection) : '*';
+    const prepareIds = prepareArrayForIn(ids);
+    const queryRaw = `SELECT ${preparedProjection}
+                      FROM users
+                      WHERE userid IN (${prepareIds})`;
+
+    const queryRes = await this.queryRunner.query(queryRaw);
+    return queryRes;
+  }
+
+  createUser = async (userData) => {
+    const toInsert = objKeysToLowerCase(userData);
+
+    const queryRes = await this.queryBuilder
+      .insert()
+      .into('users')
+      .values([toInsert])
+      .returning('*')
+      .execute().then((response) => {
+        return response?.raw[0];
+      });
+
+    return queryRes;
   }
 
   checkUserGotBonus = async (bonusName, userId) => {

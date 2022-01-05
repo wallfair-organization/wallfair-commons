@@ -33,6 +33,14 @@ class Service {
     return await this.model.countDocuments(params).exec();
   }
 
+  getUsersById = async (ids, projection) => {
+    return await this.model.find({_id: {$in: ids}}, projection)
+  }
+
+  createUser = async (userData) => {
+    return await new this.model(userData).save();
+  }
+
   checkUserGotBonus = async (bonusName, userId) => {
     const userData = await this.getUser({
       'bonus.name': bonusName,
