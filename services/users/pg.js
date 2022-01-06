@@ -9,7 +9,8 @@ const prepareProjection = (projection) => {
       if (column === "_id") {
         return 'userid';
       }
-      return column;
+
+      return column.toLowerCase();
     }).join(',');
   }
 
