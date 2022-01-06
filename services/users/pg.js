@@ -19,11 +19,14 @@ const prepareProjection = (projection) => {
 const objKeysToLowerCase = (source) => {
   return Object.keys(source)
     .reduce((destination, key) => {
+      let newKey = null;
       if(key === "_id") {
-        destination['userid'] = source[key];
+        newKey = 'userid';
       } else {
-        destination[key.toLowerCase()] = source[key];
+        newKey = key.toLowerCase();
       }
+
+      destination[newKey] = source[key];
 
       return destination;
     }, {});
@@ -65,11 +68,12 @@ class Service {
 
   getUser = async (params, projection) => {
     const userId = params?._id || params?.userId;
+    const username = params?.username;
 
     const preparedProjection = projection ? prepareProjection(projection) : '*';
     const queryRaw = `SELECT ${preparedProjection}
                       FROM users
-                      WHERE userid = '${userId}'`;
+                      WHERE userid = '${userId}' OR username = '${username}'`;
 
     const queryRes = await this.queryRunner.query(queryRaw);
 
@@ -81,12 +85,12 @@ class Service {
   }
 
   getRefByUserId = async (id) => {
-    const queryRaw = `SELECT id, username, email, created_at
+    const queryRaw = `SELECT userid, username, email, created_at
                       FROM users
                       WHERE ref = '${id}'`;
 
     const queryRes = await this.queryRunner.query(queryRaw);
-    return queryRes?.[0];
+    return queryRes;
   }
 
   getUserByWallet = async (walletAddress) => {
@@ -134,6 +138,16 @@ class Service {
     const queryRaw = `SELECT ${preparedProjection}
                       FROM users
                       WHERE userid IN (${prepareIds})`;
+
+    const queryRes = await this.queryRunner.query(queryRaw);
+    return queryRes;
+  }
+
+  getLeaderboardSkipLimit = async (skip, limit) => {
+    const queryRaw = `SELECT username, amountwon, userid
+                      FROM users
+                      WHERE username IS NOT NULL AND amountwon IS NOT NULL
+                      ORDER BY amountwon DESC, created_at DESC`;
 
     const queryRes = await this.queryRunner.query(queryRaw);
     return queryRes;
@@ -197,14 +211,27 @@ class Service {
   }
 
   updateUser = async (params, toUpdate) => {
+    const userId = params._id || params.userId;
+
     const queryRes = await this.queryBuilder
       .update('users')
       .set(objKeysToLowerCase(toUpdate))
-      .where("userid = :userId", { userId: params.userid })
+      .where("userid = :userId", { userId })
       .orWhere("email = :email", { email: params.email })
       .execute();
+  }
 
-    console.log('queryRes', queryRes);
+  addLeaderboardPoints = async (userId, points, factor) => {
+    const toInc = +points * factor;
+
+    const queryRaw = `UPDATE users
+                        SET amountwon = amountwon + ${toInc}::float
+                        WHERE userId = '${userId}'
+                        returning amountwon;`;
+
+    const queryRes = await this.queryRunner.query(queryRaw);
+
+    return queryRes?.[0];
   }
 }
 

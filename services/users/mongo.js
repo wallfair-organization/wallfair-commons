@@ -1,3 +1,5 @@
+const wallfair = require("../../index");
+
 class Service {
   constructor(mongoose) {
     this.mongoose = mongoose;
@@ -9,12 +11,17 @@ class Service {
     return user ? user.toObject() : null;
   }
 
+  getUsers = async (params, projection = null, options = {}) => {
+    const users = await this.model.find(params, projection, options);
+    return users;
+  }
+
   getUserById = async (id, projection = null, options) => {
     return await this.getUser({_id: this.mongoose.Types.ObjectId(id)}, projection, options);
   }
 
   getRefByUserId = async (id) => {
-    return await this.getUser({ref: id}, ['id', 'username', 'email', 'date']);
+    return await this.getUsers({ref: id.toString()}, ['id', 'username', 'email', 'date']);
   }
 
   getUserByWallet = async (walletAddress) => {
@@ -58,6 +65,15 @@ class Service {
     return counter;
   }
 
+  getLeaderboardSkipLimit = async (skip, limit) => {
+    return this.model.find({ username: { $exists: true }, amountWon: { $exists: true, $ne: null } })
+      .sort({ amountWon: -1, date: -1 })
+      .select({ username: 1, amountWon: 1 })
+      .limit(limit)
+      .skip(skip)
+      .exec();
+  }
+
   addBonusFlagOnly = async (userId, bonusCfg, state = 1) => {
     if(userId && bonusCfg) {
       const toSave = {};
@@ -81,6 +97,11 @@ class Service {
     return this.model.updateOne({
       $or: [{'_id': params._id}, {'email': params.email}]
     }, toUpdate)
+  }
+
+  addLeaderboardPoints = async (userId, points, factor) => {
+    const toInc = +points * factor;
+    return await this.model.updateOne({_id: userId}, {$inc: {amountWon: toInc}})
   }
 }
 
