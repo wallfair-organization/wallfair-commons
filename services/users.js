@@ -1,7 +1,6 @@
 const pgService = require('./users/pg');
 const mongoService = require('./users/mongo');
-
-const serviceType = 'pg';
+const helpers = require('./users/_helpers');
 let service = null;
 
 const setParams = (params) => {
@@ -20,5 +19,6 @@ const getService = () => {
 
 module.exports = {
   setParams,
-  getService
+  getService,
+  helpers
 };
