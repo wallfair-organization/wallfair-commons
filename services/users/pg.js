@@ -219,7 +219,12 @@ class Service {
       .set(objKeysToLowerCase(toUpdate))
       .where("userid = :userId", { userId })
       .orWhere("email = :email", { email: params.email })
-      .execute();
+      .returning('*')
+      .execute().then((response) => {
+        return response?.raw[0];
+      });
+
+    return queryRes;
   }
 
   addLeaderboardPoints = async (userId, points, factor) => {
