@@ -14,6 +14,10 @@ module.exports = (mongoose) => {
       type: String,
       default: 'WFAIR',
     },
+    gamesCurrency: {
+      type: String,
+      default: 'USD'
+    }
   });
 
   const KycType = new mongoose.Schema({
