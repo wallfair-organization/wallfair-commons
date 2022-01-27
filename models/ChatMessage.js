@@ -5,7 +5,7 @@ module.exports = (mongoose) => {
       ref: 'User',
     },
     roomId: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
     },
     type: {
       type: String,
@@ -30,7 +30,7 @@ module.exports = (mongoose) => {
       required: false,
     },
   });
-  
+
   return mongoose.model('ChatMessage', chatMessageSchema);
 }
 
