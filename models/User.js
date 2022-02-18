@@ -206,7 +206,11 @@ module.exports = (mongoose) => {
     bonus: {
       type: [Object],
       default: []
-    }
+    },
+    tokensClaimedAt: {
+      type: Date,
+      required: false,
+    },
   });
 
   return mongoose.model("User", userSchema);
