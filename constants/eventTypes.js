@@ -34,6 +34,7 @@ const notificationEvents = {
     EVENT_BET_WAITING_RESOLUTION: 'Notification/EVENT_BET_WAITING_RESOLUTION',
     EVENT_BET_ACTIVE: 'Notification/EVENT_BET_ACTIVE',
     EVENT_BET_UPCOMING: 'Notification/EVENT_BET_UPCOMING',
+    EVENT_BET_RESOLVE_REMINDER: 'Notification/EVENT_BET_RESOLVE_REMINDER',
     // Reward system related events
     EVENT_USER_AWARD: 'Notification/USER_AWARD',
     // Casino events
