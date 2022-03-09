@@ -69,7 +69,7 @@ module.exports = (mongoose) => {
     },
     email: {
       type: String,
-      required: true,
+      required: false,
       max: 128,
       min: 2,
     },
